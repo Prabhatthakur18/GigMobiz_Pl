@@ -1,0 +1,553 @@
+/* Modal Styling - Frontend specific */
+#wssc-bulk-modal.wssc-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0,0,0,0.7) !important;
+    z-index: 10000 !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+}
+
+/* Show modal when it has the show class */
+#wssc-bulk-modal.wssc-modal.wssc-modal-show {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* Hide modal when it has the hide class */
+#wssc-bulk-modal.wssc-modal.wssc-modal-hide {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Override any theme CSS that might be hiding the modal */
+body #wssc-bulk-modal.wssc-modal,
+html #wssc-bulk-modal.wssc-modal,
+#page #wssc-bulk-modal.wssc-modal,
+#main #wssc-bulk-modal.wssc-modal,
+.container #wssc-bulk-modal.wssc-modal,
+.wrapper #wssc-bulk-modal.wssc-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10000 !important;
+}
+
+/* Ensure modal content is visible */
+#wssc-bulk-modal .wssc-box {
+    background: #fff !important;
+    padding: 25px !important;
+    border-radius: 8px !important;
+    width: 400px !important;
+    max-width: 90vw !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+    position: relative !important;
+    z-index: 10001 !important;
+    transform: scale(0.9) !important;
+    transition: transform 0.3s ease !important;
+}
+
+#wssc-bulk-modal.wssc-modal-show .wssc-box {
+    transform: scale(1) !important;
+}
+
+.wssc-box h3 {
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    color: #1d2327 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+
+.wssc-box label {
+    display: block !important;
+    margin-bottom: 5px !important;
+    font-weight: 500 !important;
+    color: #1d2327 !important;
+    font-size: 14px !important;
+}
+
+.wssc-box input,
+.wssc-box textarea {
+    width: 100% !important;
+    margin: 8px 0 15px 0 !important;
+    padding: 8px 12px !important;
+    box-sizing: border-box !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    font-family: inherit !important;
+}
+
+.wssc-box input:focus,
+.wssc-box textarea:focus {
+    outline: none !important;
+    border-color: #0073aa !important;
+    box-shadow: 0 0 0 1px #0073aa !important;
+}
+
+.wssc-box .button {
+    margin-right: 10px !important;
+    padding: 8px 16px !important;
+    background: #0073aa !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+}
+
+.wssc-box .button:hover {
+    background: #005177 !important;
+    color: #fff !important;
+}
+
+.wssc-box .button:last-child {
+    margin-right: 0 !important;
+    background: #666 !important;
+}
+
+.wssc-box .button:last-child:hover {
+    background: #555 !important;
+}
+
+/* Section Styling */
+.widget_shopping_cart .wssc-section {
+    margin: 20px 0 !important;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid #eee !important;
+}
+
+.widget_shopping_cart .wssc-section:last-child {
+    border-bottom: none !important;
+}
+
+.widget_shopping_cart .wssc-section-title {
+    margin: 0 0 15px 0 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    text-align: left !important;
+}
+
+/* Products Grid */
+.widget_shopping_cart .wssc-products-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+/* Product Card Styling */
+.widget_shopping_cart .wssc-product-card {
+    display: flex !important;
+    align-items: center !important;
+    background: #f8f9fa !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
+    position: relative !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid #e9ecef !important;
+    box-sizing: border-box !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+}
+
+.widget_shopping_cart .wssc-product-card:hover {
+    background: #f1f3f4 !important;
+    border-color: #ddd !important;
+}
+
+.widget_shopping_cart .wssc-product-image {
+    flex-shrink: 0 !important;
+    width: 60px !important;
+    height: 60px !important;
+    margin-right: 10px !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+}
+.widget_shopping_cart .wssc-product-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.widget_shopping_cart .wssc-product-info {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    min-width: 0 !important;
+}
+
+.widget_shopping_cart .wssc-product-name {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #333 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.4 !important;
+    word-break: break-word !important;
+}
+.widget_shopping_cart .wssc-product-price {
+    font-size: 13px !important;
+    color: #666 !important;
+    font-weight: 500 !important;
+}
+
+.widget_shopping_cart .wssc-product-price .amount {
+    color: #2196F3 !important;
+    font-weight: 600 !important;
+}
+
+/* Product Actions - Button centering */
+.widget_shopping_cart .wssc-product-actions {
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    margin-left: auto !important;
+}
+
+.widget_shopping_cart .wssc-add-btn {
+    background: #000 !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 6px 14px !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    min-width: auto !important;
+}
+
+.widget_shopping_cart .wssc-add-btn:hover,
+.widget_shopping_cart .wssc-add-btn:focus {
+    background: #333 !important;
+    color: #fff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+    text-decoration: none !important;
+}
+
+.widget_shopping_cart .wssc-add-btn:active {
+    transform: translateY(0) !important;
+}
+
+.widget_shopping_cart .wssc-add-btn:disabled,
+.widget_shopping_cart .wssc-add-btn.loading {
+    background: #666 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    opacity: 0.7 !important;
+}
+
+/* Quantity Badge */
+.widget_shopping_cart .wssc-qty-badge {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    background: #e53935 !important;
+    color: #fff !important;
+    padding: 4px 8px !important;
+    border-radius: 50% !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+    min-width: 20px !important;
+    height: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    z-index: 1 !important;
+}
+
+/* Bulk Button */
+.wssc-bulk-btn {
+    background: #FF6B35 !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 10px 16px !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    margin-top: 10px !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    transition: background 0.3s !important;
+    box-sizing: border-box !important;
+}
+
+.wssc-bulk-btn:hover {
+    background: #e55a2b !important;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+/* Toast Notifications */
+.wssc-toast {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    background: #323232 !important;
+    color: #fff !important;
+    padding: 12px 20px !important;
+    border-radius: 6px !important;
+    font-size: 14px !important;
+    opacity: 0.95 !important;
+    z-index: 9999 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    animation: slideInUp 0.3s ease-out !important;
+}
+
+.wssc-toast.success {
+    background: #00a32a !important;
+}
+
+.wssc-toast.error {
+    background: #d63638 !important;
+}
+
+/* Animations */
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 0.95;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .widget_shopping_cart .wssc-product-card {
+        padding: 10px !important;
+    }
+    
+    .widget_shopping_cart .wssc-product-image {
+        width: 50px !important;
+        height: 50px !important;
+        margin-right: 10px !important;
+    }
+    
+    .widget_shopping_cart .wssc-add-btn {
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+        min-width: 60px !important;
+    }
+    
+    .wssc-box {
+        padding: 20px 15px !important;
+        margin: 0 10px !important;
+    }
+    
+    .wssc-toast {
+        right: 10px !important;
+        left: 10px !important;
+        bottom: 10px !important;
+    }
+}
+
+/* Image Upload Styling */
+.wssc-mobile-selector .wssc-image-upload-container {
+    margin-top: 10px;
+}
+
+.wssc-mobile-selector .wssc-image-upload-container input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.wssc-mobile-selector .wssc-image-upload-container input[type="file"]:hover {
+    border-color: #0073aa;
+    background: #f0f6fc;
+}
+
+.wssc-mobile-selector .wssc-image-preview {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.wssc-mobile-selector .wssc-image-preview img {
+    border: 2px solid #0073aa;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.wssc-mobile-selector .wssc-upload-status {
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.wssc-mobile-selector #wssc_remove_image {
+    background: #d63638;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.wssc-mobile-selector #wssc_remove_image:hover {
+    background: #b32d2e;
+}
+
+/* Side Cart Image Display */
+.widget_shopping_cart .wssc-uploaded-image {
+    margin-top: 10px;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+}
+
+.widget_shopping_cart .wssc-image-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+.widget_shopping_cart .wssc-uploaded-image img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Mobile Selector with Image Styling */
+.wssc-mobile-selector-with-image {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.wssc-mobile-selector-with-image .wssc-mobile-field {
+    margin-bottom: 15px;
+}
+
+.wssc-mobile-selector-with-image .wssc-mobile-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #495057;
+    font-size: 14px;
+}
+
+.wssc-mobile-selector-with-image .wssc-mobile-field select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.wssc-mobile-selector-with-image .wssc-mobile-field select:focus {
+    outline: none;
+    border-color: #0073aa;
+    box-shadow: 0 0 0 3px rgba(0, 115, 170, 0.1);
+}
+
+.wssc-mobile-selector-with-image .wssc-mobile-field select:disabled {
+    background: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.wssc-mobile-selector-with-image .wssc-image-upload-container {
+    margin-top: 10px;
+}
+
+.wssc-mobile-selector-with-image .wssc-image-upload-container input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px dashed #dee2e6;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.wssc-mobile-selector-with-image .wssc-image-upload-container input[type="file"]:hover {
+    border-color: #0073aa;
+    background: #f0f6fc;
+}
+
+.wssc-mobile-selector-with-image .wssc-image-preview {
+    margin-top: 15px;
+    text-align: center;
+    padding: 15px;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+.wssc-mobile-selector-with-image .wssc-image-preview img {
+    border: 2px solid #0073aa;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 200px;
+}
+
+.wssc-mobile-selector-with-image .wssc-upload-status {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.wssc-mobile-selector-with-image #wssc_remove_image {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+.wssc-mobile-selector-with-image #wssc_remove_image:hover {
+    background: #c82333;
+}
