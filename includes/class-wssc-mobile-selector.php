@@ -49,7 +49,6 @@
                  wp_send_json_error('File was not created after move_uploaded_file');
              }
              
--            // Save to database with relative path for better portability
             // Update image record with order ID and mark as confirmed
              global $wpdb;
              $table = $wpdb->prefix . 'wssc_product_images';
@@ -58,12 +57,10 @@
                  'product_id' => $product_id,
                  'mobile_brand' => $mobile_brand,
                  'mobile_model' => $mobile_model,
--                'image_path' => $file_path, // Keep absolute path for server operations
-+                'image_path' => $file_path,
+                'image_path' => $file_path,
                  'image_name' => $unique_filename,
--                'image_size' => $file['size']
-+                'image_size' => $file['size'],
-+                'status' => 'pending' // Mark as pending until order is placed
+                'image_size' => $file['size'],
+                'status' => 'pending' // Mark as pending until order is placed
              ]);
              
              if ($result !== false) {
@@ -79,8 +76,7 @@
                  }
                  
                  wp_send_json_success([
--                    'message' => 'Image uploaded successfully!',
-+                    'message' => 'Image uploaded successfully! It will appear in admin after order confirmation.',
+                    'message' => 'Image uploaded successfully! It will appear in admin after order confirmation.',
                      'id' => $image_id,
                      'image_path' => $file_path,
                      'image_name' => $unique_filename,
