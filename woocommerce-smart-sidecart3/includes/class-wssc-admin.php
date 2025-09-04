@@ -252,11 +252,22 @@ public function requests_page() {
         
         global $wpdb;
         $table = $wpdb->prefix . 'wssc_product_images';
-        $results = $wpdb->get_results("SELECT * FROM $table ORDER BY uploaded_at DESC");
+        
+        // FIXED: Only show images that have an associated order_id (confirmed orders)
+        $results = $wpdb->get_results("SELECT * FROM $table WHERE order_id IS NOT NULL AND order_id > 0 ORDER BY uploaded_at DESC");
+        
+        // Get count of pending images (uploaded but no order yet)
+        $pending_count = $wpdb->get_var("SELECT COUNT(*) FROM $table WHERE order_id IS NULL OR order_id = 0");
         ?>
         <div class="wrap">
             <h1>📸 Image Selected Management</h1>
-            <p class="description">Manage images uploaded by customers for mobile selector products.</p>
+            <p class="description">Manage images uploaded by customers for mobile selector products. Only images from confirmed orders are shown here.</p>
+            
+            <?php if ($pending_count > 0): ?>
+                <div class="notice notice-info">
+                    <p><strong>ℹ️ Info:</strong> There are <?php echo $pending_count; ?> uploaded images waiting for order confirmation. They will appear here once the customer places an order.</p>
+                </div>
+            <?php endif; ?>
             
             <!-- Debug Information -->
             <div class="wssc-debug-info" style="background: #f0f6fc; padding: 15px; border-left: 4px solid #0073aa; margin-bottom: 20px; border-radius: 4px;">
@@ -303,7 +314,7 @@ public function requests_page() {
             
             <?php if (empty($results)): ?>
                 <div class="no-requests">
-                    <p>No uploaded images found.</p>
+                    <p>No confirmed order images found.</p>
                 </div>
             <?php else: ?>
                 <div class="wssc-image-table">

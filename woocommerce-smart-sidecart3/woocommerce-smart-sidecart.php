@@ -2,7 +2,7 @@
 /*
 Plugin Name: WooCommerce Smart Side Cart + Bulk Buy
 Description: Adds a side cart with recommended products, bulk buying options, and mobile selector with image upload.
-Version: 1.0.6
+Version: 1.0.7
 Author: Prabhat Thakur
 */
 
@@ -18,6 +18,8 @@ require_once WSSC_PLUGIN_PATH . 'includes/class-wssc-mobile-admin.php';
 require_once WSSC_PLUGIN_PATH . 'includes/class-wssc-ajax.php';
 require_once WSSC_PLUGIN_PATH . 'includes/class-wssc-sidecart.php';
 require_once WSSC_PLUGIN_PATH . 'includes/class-wssc-admin.php';
+require_once WSSC_PLUGIN_PATH . 'includes/class-wssc-checkout.php';
+require_once WSSC_PLUGIN_PATH . 'includes/class-wssc-debug.php'; // NEW: Debug class
 
 // Initialize the plugin
 class WSSC_Plugin {
@@ -48,39 +50,39 @@ class WSSC_Plugin {
         new WSSC_SideCart();
         new WSSC_Admin();
         new WSSC_Mobile_Admin();
+        // WSSC_Checkout and WSSC_Debug are auto-initialized in their own files
     }
     
-      // Add this to the activate method in WSSC_Plugin class
-public function activate() {
-    // Create database tables
-    WSSC_DB::create_table();
-    WSSC_DB::create_image_table();
-    
-    // Create mobile selector tables
-    $mobile_selector = new WSSC_Mobile_Selector();
-    $mobile_selector->create_tables();
-    
-    // Update plugin version
-    $current_version = get_option('wssc_plugin_version', '1.0.0');
-    if (version_compare($current_version, '1.0.4', '<')) {
-        $this->upgrade_database();
-        update_option('wssc_plugin_version', '1.0.4');
+    public function activate() {
+        // Create database tables
+        WSSC_DB::create_table();
+        WSSC_DB::create_image_table();
+        
+        // Create mobile selector tables
+        $mobile_selector = new WSSC_Mobile_Selector();
+        $mobile_selector->create_tables();
+        
+        // Update plugin version
+        $current_version = get_option('wssc_plugin_version', '1.0.0');
+        if (version_compare($current_version, '1.0.7', '<')) {
+            $this->upgrade_database();
+            update_option('wssc_plugin_version', '1.0.7');
+        }
+        
+        // Flush rewrite rules
+        flush_rewrite_rules();
     }
-    
-    // Flush rewrite rules
-    flush_rewrite_rules();
-}
 
-private function upgrade_database() {
-    global $wpdb;
-    $table = $wpdb->prefix . 'wssc_bulk_requests';
-    
-    // Add cart_products column if it doesn't exist
-    $column_exists = $wpdb->get_results("SHOW COLUMNS FROM $table LIKE 'cart_products'");
-    if (empty($column_exists)) {
-        $wpdb->query("ALTER TABLE $table ADD COLUMN cart_products TEXT AFTER product_id");
+    private function upgrade_database() {
+        global $wpdb;
+        $table = $wpdb->prefix . 'wssc_bulk_requests';
+        
+        // Add cart_products column if it doesn't exist
+        $column_exists = $wpdb->get_results("SHOW COLUMNS FROM $table LIKE 'cart_products'");
+        if (empty($column_exists)) {
+            $wpdb->query("ALTER TABLE $table ADD COLUMN cart_products TEXT AFTER product_id");
+        }
     }
-}
     
     public function woocommerce_missing_notice() {
         echo '<div class="notice notice-error"><p>';
