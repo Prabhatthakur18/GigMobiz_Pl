@@ -23,31 +23,40 @@ class WSSC_Debug {
     }
     
     public function add_debug_menu() {
+        // Only add debug menu if we have proper permissions
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+        
         // Check if parent menu exists first
         global $menu, $submenu;
         
-        // Ensure the parent menu exists before adding submenu
-        if (!isset($submenu['wssc-settings'])) {
-            // If parent doesn't exist, create it first
-            add_menu_page(
-                'Side Cart Settings', 
-                'Side Cart', 
-                'manage_options', 
-                'wssc-settings', 
-                '__return_false', 
-                'dashicons-cart', 
-                56
+        try {
+            // Ensure the parent menu exists before adding submenu
+            if (!isset($submenu['wssc-settings'])) {
+                // If parent doesn't exist, create it first
+                add_menu_page(
+                    'Side Cart Settings', 
+                    'Side Cart', 
+                    'manage_options', 
+                    'wssc-settings', 
+                    '__return_false', 
+                    'dashicons-cart', 
+                    56
+                );
+            }
+            
+            add_submenu_page(
+                'wssc-settings',
+                'Debug Images',
+                'Debug Images',
+                'manage_options',
+                'wssc-debug',
+                [$this, 'debug_page']
             );
+        } catch (Exception $e) {
+            error_log('WSSC Debug Menu Error: ' . $e->getMessage());
         }
-        
-        add_submenu_page(
-            'wssc-settings',
-            'Debug Images',
-            'Debug Images',
-            'manage_options',
-            'wssc-debug',
-            [$this, 'debug_page']
-        );
     }
     
     public function debug_page() {

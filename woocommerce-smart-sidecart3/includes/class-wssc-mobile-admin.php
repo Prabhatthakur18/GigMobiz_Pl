@@ -18,7 +18,12 @@ class WSSC_Mobile_Admin {
     private function get_mobile_selector() {
         global $wssc_mobile_selector;
         if (!$wssc_mobile_selector) {
-            $wssc_mobile_selector = new WSSC_Mobile_Selector();
+            try {
+                $wssc_mobile_selector = new WSSC_Mobile_Selector();
+            } catch (Exception $e) {
+                error_log('WSSC Mobile Admin Error: ' . $e->getMessage());
+                return null;
+            }
         }
         return $wssc_mobile_selector;
     }
